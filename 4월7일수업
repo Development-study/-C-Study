@@ -1,0 +1,41 @@
+#include<stdio.h>
+
+int main() 
+{
+	int a, b, c;
+	int sum = 0;
+	char d, e;
+		printf("식을 적어주세요(a + b + c)");
+		scanf("%d %c %d %c %d", &a, &d, &b, &e, &c);
+		if (d == '+') {
+			if (e == '+') {
+				sum = a + b + c;
+			}
+			if (e == '-') {
+				sum = a + b - c;
+			}
+			if (e == '*') {
+				sum = a + b * c;
+			}
+			if (e == '/') {
+				sum = a + b / c;
+			}
+		}
+		else if (d == '-') {
+			if (e == '+') {
+				sum = a - b + c;
+			}
+			if (e == '-') {
+				sum = a - b - c;
+			}
+			if (e == '*') {
+				sum = a - b * c;
+			}
+			if (e == '/') {
+				sum = a - b / c;
+			}
+		}
+
+		printf("%d\n", sum);
+	return 0;
+}
