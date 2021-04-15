@@ -1,0 +1,89 @@
+================================================
+
+#include<stdio.h>
+
+int n;
+void add(int x);
+
+int main() {
+	printf("n = %d\n", n);
+	add(3);
+	return 0;
+}
+
+void add(int x) {
+	n += x;
+	printf("%d", n);
+}
+
+================================================
+
+#include<stdio.h>
+
+int n;
+void add(int x);
+
+int main() {
+	printf("n = %d\n", n);
+	add(3);
+	printf("n=%d\n", n);
+	n++;
+	printf("n=%d\n", n);
+	return 0;
+}
+
+void add(int x) {
+	n += x;
+}
+
+================================================
+
+#include<stdio.h>
+
+
+int recur(int n) {
+	if (n < 0)
+		return 1;
+	printf("함수 안의 함수 호출 : %d\n", n);
+	recur(n - 1);
+}
+
+int main() {
+	recur(5);
+	return 0;
+}
+
+================================================
+
+#include<stdio.h>
+
+int main() {
+	int a, b, c, d, e;
+	int arr[5] = { 1, 2, 3, 4, 5 };
+	int sum1 = 0, sum2 = 0;
+	a = 1, b = 2, c = 3, d = 4, e = 5;
+	sum1 = a + b + c + d + e;
+	arr[0] = 1, arr[1] = 2, arr[2] = 3, arr[3] = 4, arr[4] = 5;
+	for (int i = 0; i < 5; i++) {
+		sum2 += arr[1];
+	}
+	printf("sum1 = %d, sum2 = %d\n", sum1, sum2);
+	return 0;
+}
+
+================================================
+
+#include<stdio.h>
+
+int main() {
+	int arr[10], i, j;
+	for (i = 0; i < 10; i++) {
+		scanf("%d", &arr[i]);
+	}
+	for (j = 9; j >= 0; j--) {
+		printf("%d ", arr[j]);
+	}
+	return 0;
+}
+
+================================================
