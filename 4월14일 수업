@@ -1,0 +1,81 @@
+=========================================
+
+#include<stdio.h>
+
+int main() {
+	int num;
+	while (1) {
+		printf("숫자를 입력하세요 : ");
+		scanf("%d", &num);
+		if (num < 0) {
+			break;
+		}
+		if (num == 0) {
+			continue;
+		}
+		if (num % 2 == 1) {
+			printf("홀수\n");
+		}
+		else {
+			printf("짝수\n");
+		}
+	}
+	return 0;
+}
+
+=========================================
+
+#include<stdio.h>
+
+int main() {
+	int score, pass;
+	printf("점수를 입력하세요 : ");
+	scanf("%d", &score);
+	printf("합격점을 입력하세요 : ");
+	scanf("%d", &pass);
+	printf("%s", score > pass ? "합격" : "불합격");
+	return 0;
+}
+
+=========================================
+
+#include<stdio.h>
+
+int main() {
+	int a;
+	scanf("%d", &a);
+	switch (a) {
+	case 1:
+		printf("1st");
+		break;
+	case 2:
+		printf("2nd");
+		break;
+	case 3:
+		printf("3rd");
+		break;
+	default:
+		printf("%dth", a);
+		break;
+	}
+	return 0;
+}
+
+=========================================
+
+#include<stdio.h>
+
+int main() {
+	int a, i, j, k = 1;
+	scanf("%d", &a);
+	for (i = 1; i <= a; i++) {
+		for (j = 1; j <= i; j++) {
+			printf("%d ", k);
+			k++;
+		}
+		printf("\n");
+	}
+	return 0;
+}
+
+=========================================
