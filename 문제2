@@ -1,0 +1,15 @@
+#include<stdio.h>
+#define SIZE 10
+
+int main() {
+   int data[SIZE];
+   int i;
+   for (i = 0; i < SIZE; i++) {
+      printf("정수를 입력하세요");
+      scanf("%d", &data[i]);
+   }
+   for (i = SIZE - 1; i > 0; i--) {
+      printf("%d\n", data[i]);
+   }
+   return;
+}
