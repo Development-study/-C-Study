@@ -1,0 +1,107 @@
+#pragma warning (disable : 4996)
+#include <stdio.h>
+
+
+
+//배열 사용안한것
+int main()
+{
+   float a, b, c, d, e, f;
+   scanf("%f %f %f %f %f %f", &a, &b, &c, &d, &e, &f);
+   printf("6명의 체중의 평균은  : %.1f 입니다.", (a + b + c + d + e + f) / 6);
+}
+
+
+
+//배열 사용한것
+int main()
+{
+   double n[6] , sum = 0;
+   printf("체중을 입력해주세요.");
+   for (int i = 0; i < 6; i++)
+      scanf("%lf", &n[i]);
+   for (int i = 0; i < 6; i++)
+      sum += n[i];
+   printf("%.1lf", sum / 6);
+   return 0;
+}
+
+
+
+int main()
+{
+    int n[10], i, odd = 0, even = 0;
+
+    printf("입력정수 : ");
+    for (i = 0; i < 10; i++)
+        scanf("%d", &n[i]);
+    for (i = 1; i <= 10; i++)
+    {
+        if (i % 2 == 0)
+            even += n[i - 1];
+        else
+            odd += n[i - 1];
+    }
+    printf("odd : %d\neven : %d", odd, even);
+
+    return 0;
+}
+
+
+
+//세자리 이하의 정수100개를 차례로 입력 받다가 999가 입력되면 
+//프로그램을 종료하고 999를 제외한 그떄까지 입력된
+//최대값과 최소값을 출력하는 프로그램을 작성하시오.
+
+int main()
+{
+   int a[100], max = 0, min = 0;
+   printf("정수를 입력해주세요.");
+   for (int i = 0; i < 100; i++)
+   {
+      scanf("%d", &a[i]);
+      if (a[i] == 999)
+         break;
+      if (max < a[i])
+         max = a[i];
+      if (min > a[i])
+         min = a[i];
+   }
+   printf("max : %d\nmin : %d", max, min);
+   return 0;
+}
+
+
+
+int main()
+{
+   int i = -1, n[100], sum1 = 0, sum2 = 0;
+   printf("입력 정수 :    ");
+   do
+   {
+      i++;
+      scanf("%d", &n[i]);
+      if (n[i] > sum1)
+      if (n[i] < 999)
+         sum1 = n[i];
+      if (n[i] < sum2)
+         sum2 = n[i];
+   }    
+   while (i < 100 && n[i] != 999);
+   printf("max : %d\nmin : %d", sum1, sum2);
+}
+
+
+//토끼의 다리수 4개 닭의 다리 수 2개이다
+//토끼와 닭의 전체 다리의 수와 닭고 토끼의 전테 마리수를
+//입력받아 토끼와 닭이 각각 몇 마리인지 출력하는 프로그램을 작성하시오.
+int main()
+{
+   int r, c;
+   scanf("%d %d", &r, &c);
+   int sum1 = 0, sum2 = 0;
+   sum1 = r / 4;
+   sum2 = c / 2;
+   printf("토끼 : %d\n닭 : %d", sum1, sum2);
+   return 0;
+}

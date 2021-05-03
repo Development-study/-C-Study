@@ -1,0 +1,49 @@
+===============================================
+
+int a[5] = { 0,1,2,3,4 };
+	printf("%d %d\n", a[0], a[1]);
+	printf("%p %p\n", &a[0], &a[1]);
+	printf("%d\n", &a[1] - &a[0]);
+	return 0;
+	
+
+===============================================
+
+int arr[5] = { 1, 2, 3, 4, 5 };
+	int* parr = arr;
+	printf("%d \n", *parr);
+	printf("%d \n", *(++parr));
+	printf("%d \n", *(++parr));
+	printf("%d \n", *(parr + 1));
+	printf("%d \n", *(parr + 2));
+	return 0;
+
+===============================================
+
+int a = 1, b = 2, c = 3;
+	int Arr[3] = { 10,20,30 };
+	int* pArr[3] = { &a, &b, &c };
+	printf("%d \n", *pArr[0]);
+	printf("%d \n", *pArr[1]);
+	printf("%d \n", *pArr[2]);
+	return 0;
+
+===============================================
+
+char arr[3][10] = { "kim", "hong", "lee" };
+	//char* parr[3] = { "kim", "hong", "lee" };
+	char* parr[3] = { arr[0], arr[1], arr[2] };
+	printf("%s \n", parr[0]);//kim
+	printf("%s \n", parr[1]);//hong
+	printf("%s \n", parr[2]);//lee
+
+	printf("%s \n", *parr);//kim
+	printf("%s \n", *parr+1);//im
+	printf("%s \n", *parr+2);//m
+
+	printf("%s \n", *parr);//kim
+	printf("%s \n", *(parr+1));//hong
+	printf("%s \n", *(parr+2));//lee
+	return 0;
+
+===============================================
