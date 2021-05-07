@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<Windows.h>
+
+int main() {
+	int a[100] = { 0 }, i, sub_i, j =0, re, line, stu;
+
+	while (1) {
+		srand((unsigned int)time(NULL));
+		printf("학생 수를 입력해주세요 : ");
+		scanf("%d", &stu);
+		system("cls");
+		for (i = 0; i < stu; i++) {
+			a[i] = rand() % stu + 1;
+			for (sub_i = 0; sub_i < i; sub_i++) {
+				if (a[i] == a[sub_i]) {
+					i--;
+					break;
+				}
+			}
+		}
+		printf("|=========================================================================|\n");
+		printf("|                                  교탁                                   |\n");
+		printf("|=========================================================================|");
+		for (i = 0; i < stu; i++) {
+			if (j % 5 == 0)
+				printf("\n");
+			Sleep(1000);
+			printf("|%7d%7c|", a[i], '\0');
+			j++;
+		}
+		printf("\n|=========================================================================|\n");
+		printf("|              멈춤 : 0             |              재배정 : 1             |\n");
+		printf("|=========================================================================|\n");
+		scanf("%d", &re);
+		if (re == 1) {
+			system("cls");
+			main();
+		}
+		else {
+			break;
+			return 0;
+		}
+	}
+	return 0;
+}
