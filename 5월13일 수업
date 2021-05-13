@@ -1,0 +1,107 @@
+======================================
+
+#include <stdio.h>
+
+int main(){
+    int arr[100][100] = { 0, };
+    int a, b, i, j;
+    int value = 1;
+    int k = 0;
+    scanf("%d %d", &a, &b);
+    while (1) {
+        for (i = 0; i < b; i++) {
+            for (j = 0; j < a; j++) {
+                if (i + j == k)
+                    arr[j][i] = value++;
+            }
+        }
+        k++;
+        if (value - 1 == a * b)
+            break;
+    }
+    for (i = 0; i < a; i++) {
+        for (j = 0; j < b; j++) {
+            printf("%4d", arr[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+
+======================================
+
+#include<stdio.h>
+
+int n;
+
+int f(int n) {
+	int sum = 0;
+	for (int i = 1; i <= n; i++) {
+		sum += i;
+	}
+	return sum;
+}
+
+int main() {
+	scanf("%d", &n);
+	printf("%d\n", f(n));
+	return 0;
+}
+
+======================================
+
+#include<stdio.h>
+
+int n, d[110];
+
+int f() {
+	int max = 0;
+	int i;
+	for (i = 0; i < n-1; i++) {
+		if (d[max] < d[i+1]) {
+			max = i+1;
+		}
+	}
+	return max+1;
+}
+
+int main() {
+	scanf("%d", &n);
+
+	for (int i = 0; i < n; i++) {
+		scanf("%d", &d[i]);
+	}
+
+	printf("%d", f());
+	return 0;
+}
+
+======================================
+
+#include<stdio.h>
+
+int main() {
+	int i, j, a;
+	char ar[100][100] = { 0 };
+	printf("수 입력 : ");
+	scanf("%d", &a);
+	for (i = 0; i < a; i++) {
+		for (j = 0; j < a; j++) {
+			if (i == a - 1 || j == 0 || i == j) {
+				ar[i][j] = '*';
+			}
+			else {
+				ar[i][j] = ' ';
+			}
+		}
+	}
+	for (i = 0; i < a; i++) {
+		for (j = 0; j < a; j++) {
+			printf("%c", ar[i][j]);
+		}
+		printf("\n");
+	}
+	return 0;
+}
+
+======================================
