@@ -1,0 +1,132 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+
+int main() {
+	int i;
+	char str[256];
+	printf("Enter a number : ");
+	//fgets(buffer, 256, stdin);
+	gets_s(str, 256);
+	i = atoi(str);
+	printf("입력된 정수값 : %d, 2배의 값 : %d.\n", i, i * 2);
+	return 0;
+}
+
+===============================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+
+int main() {
+	int i;
+	char arr[50];
+	printf("Enter a number : ");
+	scanf("%d", &i);
+	_itoa(i, arr, 10);
+	printf("decimal : %s\n", arr);
+	_itoa(i, arr, 16);
+	printf("hexadecimal : %s\n", arr);
+	_itoa(i, arr, 2);
+	printf("binary : %s\n", arr);
+	return 0;
+}
+
+===============================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+
+int isPrime(int n) {
+	for (int i = 2; i < n; i++) {
+		if (!(n % i))
+			return 0;
+	}
+	return 1;
+}
+
+int main() {
+	for (int i = 2; i < 100000; i++) {
+		if (isPrime(i))
+			printf("%4d", i);
+	}
+	return 0;
+}
+
+===============================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+
+int isPrime(int n) {
+	for (int i = 2; i < n; i++) {
+		if (!(n % i)) //if(n%i==0)
+			return 0;
+	}
+	return 1;
+}
+
+int main() {
+	int a;
+	int count;
+	while (1) {
+		count = 0;
+		printf("숫자 : ");
+		scanf("%d", &a);
+		if (a >= 1000) {
+			printf("\n");
+			printf("숫자 : ");
+			scanf("%d", &a);
+		}
+		if (a < 2) {
+			break;
+		}
+		for (int i = 2; i < a; i++) {
+			if (isPrime(i)) {
+				printf("%4d", i);
+				count++;
+			}
+			if (count == 10) {
+				printf("\n");
+			}
+		}
+		if (count == 0) {
+			printf("\n");
+		}
+		else {
+			printf("\n\n");
+		}
+	}
+	return 0;
+}
+
+===============================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+
+static int data[] = { 155, 179, 167, 156, 179, 145, 180, 175, 167, 165, 157, 186, 155, 184, 163, 154, 
+					  157, 159, 171, 168, 179, 173, 153, 171, 171, 175, 172, 174, 173, 179, 164, 167,
+					  172, 176, 174, 181, 181, 161, 190, -99 };
+static int histo[7];
+
+int main() {
+	int i = 0, idx, standard = 150;
+	while (data[i] != -99) {
+		if (data[i] >= 150 && data[i] < 185) {
+			idx = (data[i] - 150) / 5;
+			histo[idx]++;
+		}
+		i++;
+	}
+	for (i = 0; i < 7; i++) {
+		printf("%3d - %3d = %d\n", standard, standard + 4, histo[i]);
+		standard += 5;
+	}
+}
+
+===============================================
