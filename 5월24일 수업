@@ -1,0 +1,68 @@
+#include<stdio.h>
+#include<time.h>
+#include<stdlib.h>
+
+int main() {
+	int dice = rand() % 6 + 1, dice2 = rand() % 6 + 1;
+	srand(unsigned(time(NULL)));
+	int Go = 0;
+	char ask;
+	do {
+		printf("주사위 게임을 하시겠습니까 ? (y/n)");
+		scanf("%c", &ask);
+		getchar();
+		if (ask == 'y') {
+			Go = 0;
+			do {
+				dice = rand() % 6 + 1, dice2 = rand() % 6 + 1;
+				Go += dice + dice2;
+				printf("주사위 : %d %d\n", dice, dice2);
+				if (dice == dice2)
+					printf("더블!\n");
+			} while (dice == dice2);
+			printf("%d칸 전진하세요.\n", Go);
+		}
+	} while (ask == 'y');
+	return 0;
+}
+
+====================================================================
+
+#include<stdio.h>
+#include<time.h>
+#include<stdlib.h>
+
+int main() {
+	srand(unsigned(time(NULL)));
+	int ask, rsp, rsp2;
+	int win = 0, lose = 0, draw = 0, opp = 0;
+	printf("가위바위보 게임을 몇번 실행하시겠습니까? ");
+	scanf("%d", &ask);
+	while (1) {
+		rsp = rand() % 3 + 1;
+		printf("|  1 : 가위  |  2 : 바위  |  3 : 보  | : ");
+		scanf("%d", &rsp2);
+		if (rsp == rsp2) {
+			printf("비겼습니다! \n");
+			draw++;
+			printf("| 승 : %d | 패 : %d | 무 : %d |\n", win, lose, draw);
+		}
+		else if ((rsp == 2 && rsp2 == 1) || (rsp == 3 && rsp2 == 2) || (rsp == 1 && rsp2 == 3)) {
+			printf("졌습니다! \n");
+			lose++;
+			printf("| 승 : %d | 패 : %d | 무 : %d |\n", win, lose, draw);
+		}
+		else if ((rsp == 1 && rsp2 == 2) || (rsp == 2 && rsp2 == 3) || (rsp == 3 && rsp2 == 1)) {
+			printf("이겼습니다!\n");
+			win++;
+			printf("| 승 : %d | 패 : %d | 무 : %d |\n", win, lose, draw);
+		}
+		opp++;
+		if (ask == opp)
+			break;
+	}
+	printf("게임을 종료합니다.");
+	return 0;
+}
+
+====================================================================
