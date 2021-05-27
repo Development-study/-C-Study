@@ -1,0 +1,112 @@
+===========================================
+
+#include<stdio.h>
+
+//구조체 structure
+
+struct Point {//구조체로 점을 정의
+	int x, y;
+};
+
+int main() {
+	struct Point p = { 4,5 };
+	printf("x = %d y = %d\n", p.x, p.y);
+	return 0;
+}
+
+===========================================
+
+#include<stdio.h>
+#include<string.h>
+
+struct Student {
+	char name[20]; //학생 이름
+	int stuNum; //학생 번호
+	int age; //학생 나이
+	char address[100]; //집 주소
+};
+
+int main() {
+	struct Student class13[20];//1학년 3반 20명 관리용
+	strcpy(class13[0].name, "홍길동");
+	class13[0].age = 17;
+	class13[0].stuNum = 1301;
+	strcpy(class13[0].address, "대구시 달성군 창리로 11길");
+	
+	printf("1학년 3반 학생 정보\n");
+	printf("이름 : %s\n", class13[0].name);
+	printf("나이 : %d\n", class13[0].age);
+	printf("번호 : %d\n", class13[0].stuNum);
+	printf("주소 : %s\n", class13[0].address);
+	return 0;
+}
+
+===========================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Student {
+	char name[10];
+	int age;
+	int stuNum;
+	char address[100];
+};
+
+int main() {
+	struct Student studentinfo[5];
+	int i;
+	for (i = 0; i < 5; i++) {
+		printf("이름 : ");
+		scanf("%s", studentinfo[i].name);
+		printf("주소 : ");
+		scanf(" %[^\n]", studentinfo[i].address);
+		printf("나이 : ");
+		scanf("%d", &studentinfo[i].age);
+		printf("번호 : ");
+		scanf("%d", &studentinfo[i].stuNum);
+		printf("\n");
+	}
+	system("cls");
+	printf("|========== 학생정보 ==========|\n");
+	for (i = 0; i < 5; i++) {
+		printf("이름 : %s\n", studentinfo[i].name);
+		printf("나이 : %d\n", studentinfo[i].age);
+		printf("번호 : %d\n", studentinfo[i].stuNum);
+		printf("주소 : %s\n", studentinfo[i].address);
+		printf("|==========================|\n");
+	}
+	return 0;
+}
+
+===========================================
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct gameChar {
+	char name[50];
+	char wname[50];
+	int power;
+}Game;
+
+int main() {
+	Game gchar;
+	printf("게임 캐릭터를 생성합니다\n");
+	printf("캐릭터 이름 : ");
+	scanf("%s", gchar.name);
+	printf("무기 이름 : ");
+	scanf("%s", gchar.wname);
+	printf("능력치 : ");
+	scanf("%d", &gchar.power);
+	system("cls");
+	printf("==========캐릭터 생성==========\n");
+	printf("이름 : %s\n", gchar.name);
+	printf("무기 :  %s\n", gchar.wname);
+	printf("능력치 : %d\n", gchar.power);
+	printf("==============================\n");
+	return 0;
+}
+
+===========================================
