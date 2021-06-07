@@ -1,0 +1,62 @@
+==============================================
+
+#include<stdio.h>
+#include<math.h>
+
+struct Point {
+	int x, y;
+	double c;
+};
+int main() {
+	struct Point p;
+	p.x = 1;
+	p.y = 2;
+	printf("x좌표 : %d y좌표 : %d\n", p.x, p.y);
+	struct Point p1;
+	p1.x = 3;
+	p1.y = 4;
+	printf("x좌표 : %d y좌표 : %d\n", p1.x, p1.y);
+	double a, b, c;
+	a = p1.x - p.x;
+	b = p1.y - p.y;
+	c = sqrt(a * a + b * b);
+	printf("%.2lf", c);
+	return 0;
+} 
+
+==============================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+
+int main() {
+	FILE* fp; //파일 포인터
+	fp = fopen("myfile.txt", "r"); //r은 읽기 (read) w는 쓰기(write)
+	char name[80] = "";
+	int myAge;
+	while (!feof(fp)) {//파일의 끝이 아닐때까지
+		fscanf(fp, "%s %d", name, &myAge); //파일 입력
+		printf("%s %d\n", name, myAge);
+	}
+	fclose(fp); //파일 닫기
+	return 0;
+}
+
+==============================================
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+
+int main() {
+	FILE* fp = fopen("myData.txt", "w");
+	char name[10];
+	int Age = 0;
+	for (int i = 0; i < 3; i++) {
+		scanf("%s %d", name, &Age);
+		fprintf(fp, "%s %d\n", name, Age);
+	}
+	fclose(fp);
+	return 0;
+}
+
+==============================================
