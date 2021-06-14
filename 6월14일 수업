@@ -1,0 +1,166 @@
+#include<stdio.h>
+
+typedef struct data Student;
+
+struct data {
+	char name[20];
+	int age;
+	int classNum;
+};
+
+int main() {
+	Student me;
+	printf("이름 입력 : ");
+	scanf("%s", me.name);
+	printf("나이 입력 : ");
+	scanf("%d", &me.age);
+	printf("학번 입력 : ");
+	scanf("%d", &me.classNum);
+	printf("이름 : %s\n나이 : %d\n학번 : %d\n", me.name, me.age, me.classNum);
+	return 0;
+}
+
+//이름과 나이를 구조체를 사용하여 입력받아 출력하는 프로그램
+//학번을 추가하여 출력하는 프로그램
+
+=========================================================================
+
+#include<stdio.h>
+#include<string.h>
+
+typedef struct data {
+	char name[20];
+	int kor, eng, math;
+}Student;
+
+int main() {
+	Student s1, s2, sum;
+	scanf("%s %d %d %d", s1.name, &s1.kor, &s1.eng, &s1.math);
+	scanf("%s %d %d %d", s2.name, &s2.kor, &s2.eng, &s2.math);
+	strcpy(sum.name, "총합");//c언어에서는 반드시 문자열 복사함수를 사용
+	/*a = 1;
+	str = "총합";*/
+	sum.kor = s1.kor + s2.kor;//국어 점수 총합
+	sum.eng = s1.eng + s2.eng;//영어 점수 총합
+	sum.math = s1.math + s2.math;//수학 점수 총합
+	printf("==========================\n");
+	printf("1번학생\n이름 : %s\n국어 : %d\n수학 : %d\n영어 : %d\n", s1.name, s1.kor, s1.math, s1.eng);
+	printf("==========================\n");
+	printf("2번학생\n이름 : %s\n국어 : %d\n수학 : %d\n영어 : %d\n", s2.name, s2.kor, s2.math, s2.eng);
+	printf("==========================\n");
+	printf("총합\n국어 : %d\n수학 : %d\n영어 : %d\n", sum.kor, sum.math, sum.eng);
+	printf("==========================\n");
+	return 0;
+}
+
+=========================================================================
+
+#include<stdio.h>
+#include<string.h>
+
+typedef struct data {
+	char name[20];
+	int kor, eng, math;
+}Student;
+
+Student score(Student s1, Student s2) {//구조체 함수 리턴
+	Student sum;
+	sum.kor = s1.kor + s2.kor;//국어 점수 총합
+	sum.eng = s1.eng + s2.eng;//영어 점수 총합
+	sum.math = s1.math + s2.math;//수학 점수 총합
+	return sum;
+}
+
+int main() {
+	Student s1, s2, sum;
+	scanf("%s %d %d %d", s1.name, &s1.kor, &s1.eng, &s1.math);
+	scanf("%s %d %d %d", s2.name, &s2.kor, &s2.eng, &s2.math);
+	sum = score(s1, s2);
+	printf("==========================\n");
+	printf("1번학생\n이름 : %s\n국어 : %d\n수학 : %d\n영어 : %d\n", s1.name, s1.kor, s1.math, s1.eng);
+	printf("==========================\n");
+	printf("2번학생\n이름 : %s\n국어 : %d\n수학 : %d\n영어 : %d\n", s2.name, s2.kor, s2.math, s2.eng);
+	printf("==========================\n");
+	printf("총합\n국어 : %d\n수학 : %d\n영어 : %d\n", sum.kor, sum.math, sum.eng);
+	printf("==========================\n");
+	return 0;
+}
+
+=========================================================================
+
+#include<stdio.h>
+
+typedef struct _P {
+	double x, y;
+}Point;
+
+int main() {
+	Point p1, p2, sum;
+	printf("두 점 입력\n");
+	scanf("%lf %lf", &p1.x, &p1.y);
+	scanf("%lf %lf", &p2.x, &p2.y);
+	sum.x = (p1.x + p2.x) / 2;
+	sum.y = (p1.y + p2.y) / 2;
+	printf("%.1lf %.1lf", sum.x, sum.y);
+	return 0;
+}
+
+//두 점을 입력받아 두 점의 중앙 위치를 알려주는 프로그램\
+//입력
+//10 5
+//12 36
+//출력
+//11.0 20.5
+
+=========================================================================
+
+#include<stdio.h>
+
+typedef struct _P {
+	double x, y;
+}Point;
+
+int main() {
+	Point p1, p2, p3, sum;
+	printf("두 점 입력\n");
+	scanf("%lf %lf", &p1.x, &p1.y);
+	scanf("%lf %lf", &p2.x, &p2.y);
+	scanf("%lf %lf", &p3.x, &p3.y);
+	sum.x = (p1.x + p2.x + p3.x) / 3;
+	sum.y = (p1.y + p2.y + p3.y) / 3;
+	printf("%.1lf %.1lf", sum.x, sum.y);
+	return 0;
+}
+
+=========================================================================
+
+#include<stdio.h>
+
+typedef struct _m {
+	int num;//계좌번호
+	int money;//입금된 돈
+}Money;
+
+Money maxMoney(Money m[], int n) {
+	Money max = m[0];
+	for (int i = 1; i < n; i++) {
+		if (max.money < m[i].money)//최대값 찾는 코드
+			max = m[i];
+	}
+	return max;
+}
+
+int main() {
+	Money m[5], king;//저축왕
+	int i;
+	for (i = 0; i < 5; i++) {
+		printf("계좌번호와 금액\n");
+		m[i].num = i;//계좌번호는 자동 입력
+		scanf("%d", &m[i].money);6
+	}
+	king = maxMoney(m, 5);//5명의 계좌정보를 넘김
+	printf("저축왕 %d번 %d원\n", king.num, king.money);
+	return 0;
+}
+
+=========================================================================
