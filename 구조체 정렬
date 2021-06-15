@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<string.h>
+
+typedef struct _P {
+	char name[20]; //5명 20바이트 미만의 이름 길이
+	int he;//height 키
+	double we;//weight 몸무게
+}Student;
+
+Student s[5];
+
+void input() {
+	for (int i = 0; i < 5; i++) {
+		scanf("%s %d %lf", s[i].name, &s[i].he, &s[i].we);
+	}
+}
+
+void sort() {
+	Student tmp;
+	for (int i = 0; i < 4; i++) {
+		for (int j = i + 1; j < 5; j++) {
+			if (s[i].he > s[j].he) {//키가 작은 순으로 정렬
+				tmp = s[i];
+				s[i] = s[j];
+				s[j] = tmp;
+				/*tmp.he = s[i].he;
+				s[i].he = s[j].he;
+				s[j].he = tmp.he;
+
+				tmp.we = s[i].we;
+				s[i].we = s[j].we;
+				s[j].we = tmp.we;
+				
+				strcpy(tmp.name, s[i].name);
+				strcpy(s[i].name, s[j].name);
+				strcpy(s[j].name, tmp.name);*/
+			}
+		}
+	}
+}
+
+void output() {
+	printf("\n");
+	for (int i = 0; i < 5; i++) {
+		printf("%s %d %.1lf\n", s[i].name, s[i].he, s[i].we);
+	}
+}
+
+int main() {
+	input();
+	sort();
+	output();
+	return 0;
+}
