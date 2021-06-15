@@ -1,0 +1,109 @@
+#include<stdio.h>
+#include<stdlib.h>//malloc() : memory allocation
+
+//malloc 함수
+int main() {
+	int arr[4] = { 1,2,3,4 };
+	//int 4byte : total 16byte
+	int* pArr;
+	int n;
+	scanf("%d", &n);
+	pArr = (int*)malloc(sizeof(int)*n);//free()
+	if (pArr == NULL) {
+		printf("메모리공간 초과");
+		return 0;
+	}
+	for (int i = 0; i < n; i++) {
+		pArr[i] = i * i;
+		printf("pArr[%d] = %d\n", i, pArr[i]);
+	}
+	free(pArr);
+	return 0;
+}
+
+================================================
+
+
+//memcpy : memory copy 메모리 복사
+//strcpy : string copy 문자열 복사
+#include<stdio.h>
+#include<string.h>
+
+typedef struct _P {
+	char name[20];
+	int x;
+	int y;
+}Point;
+int main() {
+	Point p1, p2;
+	strcpy(p1.name, "구조체 복사");
+	p1.x = 10;
+	p1.y = 20;
+	/*strcpy(p2.name, p1.name);
+	p2.x = p1.x;
+	p2.y = p1.y;*/
+	/*memcpy(&p2, &p1, sizeof(Point));*/
+	p2 = p1;
+	printf("%s\n", p2.name);
+	printf("%d %d\n", p2.x, p2.y);
+	return 0;
+}
+
+================================================
+
+#include<stdio.h>
+#include<string.h>
+
+typedef struct _P {
+	char name[20]; //5명 20바이트 미만의 이름 길이
+	int he;//height 키
+	double we;//weight 몸무게
+}Student;
+
+Student s[5];
+
+void input() {
+	for (int i = 0; i < 5; i++) {
+		scanf("%s %d %lf", s[i].name, &s[i].he, &s[i].we);
+	}
+}
+
+void sort() {
+	Student tmp;
+	for (int i = 0; i < 4; i++) {
+		for (int j = i + 1; j < 5; j++) {
+			if (s[i].he > s[j].he) {//키가 작은 순으로 정렬
+				tmp = s[i];
+				s[i] = s[j];
+				s[j] = tmp;
+				/*tmp.he = s[i].he;
+				s[i].he = s[j].he;
+				s[j].he = tmp.he;
+
+				tmp.we = s[i].we;
+				s[i].we = s[j].we;
+				s[j].we = tmp.we;
+				
+				strcpy(tmp.name, s[i].name);
+				strcpy(s[i].name, s[j].name);
+				strcpy(s[j].name, tmp.name);*/
+			}
+		}
+	}
+}
+
+void output() {
+	printf("\n");
+	for (int i = 0; i < 5; i++) {
+		printf("%s %d %.1lf\n", s[i].name, s[i].he, s[i].we);
+	}
+}
+
+int main() {
+	input();
+	sort();
+	output();
+	return 0;
+}
+
+================================================
