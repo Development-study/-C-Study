@@ -1,0 +1,313 @@
+//헤더파일
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+#include<Windows.h>
+
+//선업
+#define LEFT 75
+#define RIGHT 77
+#define UP 72
+#define DOWN 80
+#define ENTER 13
+#define DRAW_BLACK printf("●")
+#define DRAW_WHITE printf("○")
+#define WHITE 2
+#define BLACK 1
+#define MAX_N 19
+
+//오목판 MAX_N은 오목판 크기
+int board[MAX_N][MAX_N] = { 0 };
+int x = 0, y = 0;//오목판(그림)
+int start = 0;
+
+//void 함수
+void gotoxy(int x, int y);
+void CursorView(char show);
+void DrawInit();
+void DrawInit2();
+void boardPrint(int i, int j);
+void gotoinput();
+//int 함수
+int KeyMove(int n);
+int DrawColor(int n);
+int CheckFinish(int t);
+int drawStone(int stone);
+int CheckStone();
+
+int main() {
+	CursorView(0);
+	DrawColor(start);
+	DrawInit();
+	DrawInit2();
+	int x, y, i = 1;
+	for (;;) {
+		start++;
+		DrawColor(start);
+		KeyMove(start);
+		i += drawStone(DrawColor(start));
+		if (int c = CheckFinish(0)) {//5줄 확인 하고 끝내는 코드
+			gotoinput();
+			printf("GAME OVER.. \n");
+			if (c == WHITE)
+				printf("BLACK "), DRAW_WHITE;
+			else if (c == BLACK)
+				printf("WHITE "), DRAW_BLACK;
+			printf(" WIN!!! \n\n");
+			break;
+		}
+
+	}
+
+	return 0;
+}
+
+void gotoxy(int x, int y) {
+	COORD pos = { x*2, y };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+}
+
+//커서 숨기기 함수
+void CursorView(char show) {
+	CONSOLE_CURSOR_INFO cursorInfo = { 0, };
+	cursorInfo.bVisible = 0;
+	cursorInfo.dwSize = 1;
+	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
+}
+
+//방향키 움직이는 함수
+int KeyMove(int n) {
+	char keymove;
+	int x2 = 25, y2 = 0;
+
+	gotoxy(x2, y2);
+	DRAW_WHITE;
+	while (1) {
+		if (DrawColor(n) <= 0) {//흰색돌
+			gotoxy(x2, y2);
+			DRAW_WHITE;
+			if (_kbhit()) {//키보드 입력되었을때
+				keymove = _getch();
+				if (keymove == -32)
+					keymove = _getch();
+				gotoxy(x2, y2);
+				printf("  ");
+				switch (keymove) {
+				case UP://방향키 위쪽
+					if (y2 <= 0)
+						break;
+					y2--;
+					y--;
+					break;
+				case LEFT://방향키 왼쪽
+					if (x2 <= 25)
+						break;
+					x2 --;
+					x --;
+					break;
+				case DOWN://방향키 아래쪽
+					if (y2 >= 18)
+						break;
+					y2++;
+					y++;
+					break;
+				case RIGHT://빙향키 오른쪽
+					if (x2 >= 43)
+						break;
+					x2 ++;
+					x ++;
+					break;
+				case ENTER://엔터
+					CheckStone();
+					if (CheckStone() == 0)
+						return 0;
+				}
+				gotoxy(x2, y2);
+				DRAW_WHITE;
+			}
+		}
+		else {//검은색 돌
+			gotoxy(x2, y2);
+			DRAW_BLACK;
+			if (_kbhit()) {
+				keymove = _getch();
+				if (keymove == -32)
+					keymove = _getch();
+				gotoxy(x2, y2);
+				printf("  ");
+				switch (keymove) {
+				case UP://방향키 위쪽
+					if (y2 <= 0)
+						break;
+					y2--;
+					y--;
+					break;
+				case LEFT://방향키 왼쪽
+					if (x2 <= 25)
+						break;
+					x2 --;
+					x --;
+					break;
+				case DOWN://방향키 아래쪽
+					if (y2 >= 18)
+						break;
+					y2++;
+					y++;
+					break;
+				case RIGHT://방향키 오른쪽
+					if (x2 >= 43)
+						break;
+					x2 ++;
+					x ++;
+					break;
+				case ENTER://엔터
+					CheckStone();
+					if (CheckStone() == 0)
+						return 0;
+				}
+				gotoxy(x2, y2);
+				DRAW_BLACK;
+			}
+		}
+	}
+}
+
+int CheckStone() {
+	if (board[y][x] == WHITE || board[y][x] == BLACK) {
+		x = 0;
+		y = 0;
+		gotoinput();
+		printf("돌이 있습니다");
+		KeyMove(start);
+	}
+	else {
+		gotoinput();
+		printf("               ");
+		return 0;
+	}
+	return 1;
+}
+
+//오목돌 색 판단 함수
+int DrawColor(int n) {
+	if (n % 2 == 0) { //짝수일때 1 반환(1 = 검은색)
+		return 1;
+	}
+	else {
+		return 0;
+	}
+}
+
+//오목돌을 오목판에 프린트하는 함수
+int drawStone(int stone) { // stone이 1이면 흑, 0면 백
+	if (board[y][x] || x < 0 || x >= MAX_N || y < 0 || y >= MAX_N)
+		return 0;
+	gotoxy(x, y);
+	if (stone == 1) {
+		DRAW_BLACK;
+		board[y][x] = BLACK;
+		x = 0;
+		y = 0;
+	}
+	else if (stone == 0) {
+		DRAW_WHITE;
+		board[y][x] = WHITE;
+		x = 0;
+		y = 0;
+	}
+	else {
+		x = 0;
+		y = 0;
+		return 0;
+	}
+	return 1;
+}
+
+
+
+//5줄이 되었는지 확인하고 무슨색이 이겼는지 알려주는 함수
+int CheckFinish(int t) {
+	if (t == MAX_N * MAX_N)
+		return 0;
+	int x = t % MAX_N;
+	int y = t / MAX_N;
+	int color = board[y][x];
+	int dir[3] = { 0 };
+	for (int i = 0; i < 5 && color != 0; i++) {
+		if (x + i < MAX_N && color == board[y][x + i])
+			dir[0]++;
+		if (y + i < MAX_N && color == board[y + i][x])
+			dir[1]++;
+		if (x + i < MAX_N && y + i < MAX_N && color == board[y + i][x + i])
+			dir[2]++;
+	}
+	for (int i = 0; i < 3; i++)
+		if (dir[i] == 5)
+			return color;
+	return CheckFinish(t + 1);
+}
+
+//오목판 그리기 함수(그림)
+void DrawInit() {
+	gotoxy(0, 0);
+	for (int i = 0; i < MAX_N; i++) {
+		for (int j = 0; j < MAX_N; j++) {
+			gotoxy(j, i);
+			boardPrint(i, j);
+		}
+		printf("\n");
+	}
+}
+
+//돌 움직일수 있는 판 그리기 함수(위치)
+void DrawInit2() {
+	gotoxy(25, 0);
+	for (int i = 0; i < MAX_N; i++) {
+		for (int j = 0; j < MAX_N; j++) {
+			gotoxy(j, i);
+			for (int i = 0; i < MAX_N; i++) {
+				gotoxy(MAX_N + 25, i);
+				printf("%d", i + 1);
+				gotoxy(i + 25, MAX_N);
+				printf("%2c", i + 'A');
+			}
+		}
+		printf("\n");
+	}
+}
+
+
+//오목판 출력 함수
+void boardPrint(int i,int j) {
+	if (i == 0) {
+		if (j == 0)
+			printf("┌");
+		else if (j == MAX_N - 1)
+			printf("┐");
+		else
+			printf("┬");
+	}
+	else if (j == 0) {
+		if (i == MAX_N - 1)
+			printf("└");
+		else
+			printf("├");
+	}
+	else if (j == MAX_N - 1) {
+		if (i == MAX_N - 1)
+			printf("┘");
+		else
+			printf("┤");
+	}
+	else if (i == MAX_N - 1) {
+		printf("┴");
+	}
+	else
+		printf("┼");
+
+}
+
+//마지막 결과 위치 함수
+void gotoinput() {
+	gotoxy(0, 20);
+}
